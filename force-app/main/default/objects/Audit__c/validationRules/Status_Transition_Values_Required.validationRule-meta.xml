@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Transition_Values_Required</fullName>
+    <active>true</active>
+    <description>STATUS_CHANGED requires Old and New values that differ.</description>
+    <errorConditionFormula>AND(
+  TEXT(EventType__c) = &quot;STATUS_CHANGED&quot;,
+  OR(
+    ISBLANK(OldValue__c),
+    ISBLANK(NewValue__c),
+    OldValue__c = NewValue__c
+  )
+)</errorConditionFormula>
+    <errorMessage>STATUS_CHANGED events require different Old and New values.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Retries</fullName>
+    <columns>NAME</columns>
+    <columns>SourceComponent__c</columns>
+    <columns>Operation__c</columns>
+    <columns>IsRetryable__c</columns>
+    <columns>AttemptCount__c</columns>
+    <columns>NextRetryAt__c</columns>
+    <columns>LoanRequest__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ResolutionStatus__c</field>
+        <operation>equals</operation>
+        <value>Retry Scheduled</value>
+    </filters>
+    <filters>
+        <field>IsRetryable__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Due Retries</label>
+</ListView>

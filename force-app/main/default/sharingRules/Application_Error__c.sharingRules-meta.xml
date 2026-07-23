@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Share_Open_Errors_With_Support</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share Open Errors With Support</label>
+        <sharedTo>
+            <group>Bank_CRM_Support</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>ResolutionStatus__c</field>
+            <operation>equals</operation>
+            <value>Open</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ResolutionStatus__c</field>
+            <operation>equals</operation>
+            <value>Retry Scheduled</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

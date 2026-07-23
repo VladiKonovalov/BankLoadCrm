@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Draft_Loans</fullName>
+    <columns>NAME</columns>
+    <columns>Customer__c</columns>
+    <columns>LoanAmount__c</columns>
+    <columns>LoanStatus__c</columns>
+    <columns>SubmissionDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LoanStatus__c</field>
+        <operation>equals</operation>
+        <value>Draft</value>
+    </filters>
+    <label>Draft Loans</label>
+</ListView>

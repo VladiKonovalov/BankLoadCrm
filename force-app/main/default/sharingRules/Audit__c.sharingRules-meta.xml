@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Share_All_Audits_With_Compliance</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share All Audits With Compliance</label>
+        <sharedTo>
+            <group>Bank_CRM_Compliance</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>Source__c</field>
+            <operation>equals</operation>
+            <value>Apex</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Source__c</field>
+            <operation>equals</operation>
+            <value>Flow</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Source__c</field>
+            <operation>equals</operation>
+            <value>Integration</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

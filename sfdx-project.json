@@ -1,0 +1,15 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app/main",
+      "default": true
+    },
+    {
+      "path": "force-app/test"
+    }
+  ],
+  "name": "bankHW",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "65.0"
+}

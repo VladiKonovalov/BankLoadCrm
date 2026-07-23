@@ -1,0 +1,84 @@
+<template>
+    <lightning-card title="Loan Summary" icon-name="standard:display_text">
+        <div class="summary-root slds-is-relative slds-p-horizontal_medium slds-p-bottom_medium">
+            <template lwc:if={isLoading}>
+                <lightning-spinner
+                    alternative-text="Loading loan details"
+                    size="medium"
+                ></lightning-spinner>
+            </template>
+
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                Independent panel — receives the saved Id via LMS, then reloads from Salesforce.
+            </p>
+
+            <template lwc:if={showEmpty}>
+                <div class="empty-state" aria-live="polite">
+                    <p class="slds-text-body_regular">{emptyMessage}</p>
+                </div>
+            </template>
+
+            <template lwc:if={showError}>
+                <div
+                    class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small"
+                    role="alert"
+                >
+                    <span class="slds-assistive-text">error</span>
+                    <h2>{loadError}</h2>
+                </div>
+                <lightning-button
+                    class="slds-m-bottom_small"
+                    label="Retry"
+                    title="Retry loading loan summary"
+                    onclick={handleRetry}
+                    disabled={isLoading}
+                ></lightning-button>
+            </template>
+
+            <template lwc:if={showData}>
+                <div class="summary-meta slds-m-bottom_small">
+                    <span class="source-badge" title="Values came from a Salesforce reload, not the form">
+                        {loadedFromSalesforceLabel}
+                    </span>
+                    <template lwc:if={isHighValue}>
+                        <span class="high-value-badge" title="Amount exceeds ₪250,000">High value</span>
+                    </template>
+                </div>
+
+                <dl class="slds-dl_horizontal summary-fields">
+                    <dt class="slds-dl_horizontal__label">Customer Name</dt>
+                    <dd class="slds-dl_horizontal__detail">{customerName}</dd>
+
+                    <dt class="slds-dl_horizontal__label">Loan Amount</dt>
+                    <dd class="slds-dl_horizontal__detail">
+                        <lightning-formatted-number
+                            value={loanAmount}
+                            format-style="currency"
+                            currency-code="ILS"
+                        ></lightning-formatted-number>
+                    </dd>
+
+                    <dt class="slds-dl_horizontal__label">Loan Status</dt>
+                    <dd class="slds-dl_horizontal__detail">
+                        <span class={statusBadgeClass}>{loanStatus}</span>
+                    </dd>
+                </dl>
+
+                <div class="summary-actions slds-m-top_medium">
+                    <lightning-button
+                        variant="brand"
+                        label="Open loan request"
+                        title="Open this loan request record"
+                        onclick={handleOpenRecord}
+                        class="slds-m-right_small"
+                    ></lightning-button>
+                </div>
+
+                <div class="next-steps slds-m-top_medium" role="note">
+                    <p class="slds-text-title_caps slds-m-bottom_xx-small">What’s next</p>
+                    <p class="slds-text-body_small">{nextStepsLabel}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

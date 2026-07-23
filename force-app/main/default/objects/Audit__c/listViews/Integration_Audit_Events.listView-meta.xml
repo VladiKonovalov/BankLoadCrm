@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integration_Audit_Events</fullName>
+    <columns>NAME</columns>
+    <columns>EventType__c</columns>
+    <columns>LoanRequest__c</columns>
+    <columns>Source__c</columns>
+    <columns>OccurredAt__c</columns>
+    <columns>CorrelationId__c</columns>
+    <columns>NewValue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EventType__c</field>
+        <operation>equals</operation>
+        <value>INTEGRATION_RESULT</value>
+    </filters>
+    <label>Integration Audit Events</label>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Compliance persona: base plus compliance auditor. Restricted Data is assigned separately.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Bank CRM Compliance</label>
+    <permissionSets>Bank_CRM_Base</permissionSets>
+    <permissionSets>Bank_CRM_Compliance_Auditor</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

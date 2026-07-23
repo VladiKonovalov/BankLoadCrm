@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0B3D5C</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Bank CRM Lightning experience for loan intake, review, and compliance.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>Bank CRM</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Customer__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Customer__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Request_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>LoanRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Request_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>LoanRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Customer__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Bank CRM Minimum Access</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Customer_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Customer__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Bank CRM Minimum Access</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Request_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>LoanRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Bank CRM Minimum Access</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Loan_Request_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>LoanRequest__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Bank CRM Minimum Access</profile>
+    </profileActionOverrides>
+    <tabs>Bank_CRM_Home</tabs>
+    <tabs>Customer__c</tabs>
+    <tabs>LoanRequest__c</tabs>
+    <tabs>Audit__c</tabs>
+    <tabs>Application_Error__c</tabs>
+    <tabs>standard-Task</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OccurredAt__c</fullName>
+    <description>Business event time (may differ from CreatedDate for async work).</description>
+    <externalId>false</externalId>
+    <label>Occurred At</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

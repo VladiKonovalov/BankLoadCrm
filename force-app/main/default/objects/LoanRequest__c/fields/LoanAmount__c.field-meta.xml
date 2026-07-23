@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoanAmount__c</fullName>
+    <description>Requested loan amount. High-value threshold is strictly greater than configured policy.</description>
+    <externalId>false</externalId>
+    <label>Loan Amount</label>
+    <precision>16</precision>
+    <required>true</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

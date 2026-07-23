@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_Source_Event_Consistency</fullName>
+    <active>true</active>
+    <description>Enforces Apex/Flow/Integration ownership for event types.</description>
+    <errorConditionFormula>OR(
+  AND(
+    TEXT(EventType__c) = &quot;HIGH_VALUE_STATUS_REVIEW&quot;,
+    TEXT(Source__c) &lt;&gt; &quot;Flow&quot;
+  ),
+  AND(
+    TEXT(EventType__c) = &quot;STATUS_CHANGED&quot;,
+    TEXT(Source__c) &lt;&gt; &quot;Apex&quot;
+  ),
+  AND(
+    TEXT(EventType__c) = &quot;INTEGRATION_RESULT&quot;,
+    AND(
+      TEXT(Source__c) &lt;&gt; &quot;Integration&quot;,
+      TEXT(Source__c) &lt;&gt; &quot;System&quot;
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>Event type and Source are inconsistent with the designed automation ownership.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Required verified customer. Lookup (not master-detail) so loans are not cascade-deleted.</description>
+    <externalId>false</externalId>
+    <label>Customer</label>
+    <referenceTo>Customer__c</referenceTo>
+    <relationshipLabel>Loan Requests</relationshipLabel>
+    <relationshipName>Loan_Requests</relationshipName>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

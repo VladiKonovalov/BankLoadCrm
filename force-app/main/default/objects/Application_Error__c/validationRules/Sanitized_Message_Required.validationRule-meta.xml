@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sanitized_Message_Required</fullName>
+    <active>true</active>
+    <description>Long text cannot be database-required; enforce presence via validation.</description>
+    <errorConditionFormula>ISBLANK(SanitizedMessage__c)</errorConditionFormula>
+    <errorDisplayField>SanitizedMessage__c</errorDisplayField>
+    <errorMessage>A sanitized message is required.</errorMessage>
+</ValidationRule>

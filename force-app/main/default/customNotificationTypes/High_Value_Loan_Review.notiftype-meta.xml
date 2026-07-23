@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomNotificationType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customNotifTypeName>High_Value_Loan_Review</customNotifTypeName>
+    <desktop>true</desktop>
+    <masterLabel>High Value Loan Review</masterLabel>
+    <mobile>true</mobile>
+</CustomNotificationType>

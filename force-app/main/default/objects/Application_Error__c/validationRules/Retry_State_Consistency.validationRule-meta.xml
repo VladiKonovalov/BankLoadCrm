@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retry_State_Consistency</fullName>
+    <active>true</active>
+    <description>Retry Scheduled requires retryable=true and NextRetryAt; non-retryable cannot be Retry Scheduled.</description>
+    <errorConditionFormula>OR(
+  AND(
+    TEXT(ResolutionStatus__c) = &quot;Retry Scheduled&quot;,
+    OR(
+      NOT(IsRetryable__c),
+      ISBLANK(NextRetryAt__c)
+    )
+  ),
+  AND(
+    IsRetryable__c,
+    TEXT(ResolutionStatus__c) = &quot;Retry Scheduled&quot;,
+    ISBLANK(NextRetryAt__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Retry Scheduled errors must be retryable and include Next Retry At.</errorMessage>
+</ValidationRule>

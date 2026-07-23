@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Support persona: base plus support operator. Restricted Data is assigned separately.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Bank CRM Support</label>
+    <permissionSets>Bank_CRM_Base</permissionSets>
+    <permissionSets>Bank_CRM_Support_Operator</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

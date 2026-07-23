@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Management persona: base plus relationship manager and approver. Restricted Data is assigned separately.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Bank CRM Management</label>
+    <permissionSets>Bank_CRM_Base</permissionSets>
+    <permissionSets>Bank_CRM_Relationship_Manager</permissionSets>
+    <permissionSets>Bank_CRM_Approver</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Status_Consistency</fullName>
+    <active>true</active>
+    <description>IsActive and Status must not contradict each other.</description>
+    <errorConditionFormula>OR(
+  AND(NOT(IsActive__c), TEXT(Status__c) &lt;&gt; &quot;Inactive&quot;),
+  AND(IsActive__c, TEXT(Status__c) = &quot;Inactive&quot;)
+)</errorConditionFormula>
+    <errorMessage>Inactive customers must have Status = Inactive, and Active customers cannot use Status = Inactive.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,23 @@
+# LWC Jest tests (not deployable metadata)
+**/__tests__/**
+
+# Local tooling and IDE
+**/.localdevserver
+**/.sfdx
+**/.sf
+**/.vscode
+**/.idea
+
+# Docs and non-metadata project files
+**/jsconfig.json
+**/.eslintrc.json
+
+# OS / package manager
+.DS_Store
+node_modules/
+coverage/
+
+# Logs and caches
+*.log
+.npm
+.yarn

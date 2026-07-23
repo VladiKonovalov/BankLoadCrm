@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submission_Timestamp_Required</fullName>
+    <active>true</active>
+    <description>Any status other than Draft requires SubmissionDate; once set it cannot be cleared.</description>
+    <errorConditionFormula>OR(
+  AND(
+    TEXT(LoanStatus__c) &lt;&gt; &quot;Draft&quot;,
+    ISBLANK(SubmissionDate__c)
+  ),
+  AND(
+    ISCHANGED(SubmissionDate__c),
+    NOT(ISBLANK(PRIORVALUE(SubmissionDate__c))),
+    ISBLANK(SubmissionDate__c)
+  )
+)</errorConditionFormula>
+    <errorDisplayField>SubmissionDate__c</errorDisplayField>
+    <errorMessage>Submission date is required beyond Draft and cannot be cleared once set.</errorMessage>
+</ValidationRule>

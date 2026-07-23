@@ -1,0 +1,19 @@
+{
+  "name": "bank-crm",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Bank CRM Salesforce DX project — LWC Jest tooling",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "sfdx-lwc-jest -- --passWithNoTests",
+    "test:unit:watch": "sfdx-lwc-jest --watch",
+    "test:unit:debug": "sfdx-lwc-jest --debug",
+    "test:unit:coverage": "sfdx-lwc-jest --coverage -- --passWithNoTests"
+  },
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

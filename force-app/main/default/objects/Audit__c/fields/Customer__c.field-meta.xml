@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Related customer when available for customer-centric audit review.</description>
+    <externalId>false</externalId>
+    <label>Customer</label>
+    <referenceTo>Customer__c</referenceTo>
+    <relationshipLabel>Audit Events</relationshipLabel>
+    <relationshipName>Audit_Events</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

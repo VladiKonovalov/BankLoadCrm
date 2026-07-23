@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Customers</fullName>
+    <columns>NAME</columns>
+    <columns>CustomerNumber__c</columns>
+    <columns>Email__c</columns>
+    <columns>Status__c</columns>
+    <columns>RelationshipManager__c</columns>
+    <columns>IsActive__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active Customer</value>
+    </filters>
+    <filters>
+        <field>IsActive__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Active Customers</label>
+</ListView>

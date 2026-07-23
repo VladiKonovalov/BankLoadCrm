@@ -1,0 +1,138 @@
+<template>
+    <lightning-card title="Loan Request Form" icon-name="standard:currency">
+        <div class="form-root slds-is-relative slds-p-horizontal_medium slds-p-bottom_medium">
+            <template lwc:if={isSaving}>
+                <lightning-spinner
+                    alternative-text="Saving loan request"
+                    size="medium"
+                ></lightning-spinner>
+            </template>
+
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                Enter customer name, loan amount (₪), and status, then save. The summary
+                panel refreshes from Salesforce after a successful save.
+            </p>
+
+            <template lwc:if={formError}>
+                <div
+                    class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small"
+                    role="alert"
+                >
+                    <span class="slds-assistive-text">error</span>
+                    <h2>{formError}</h2>
+                </div>
+            </template>
+
+            <template lwc:if={lastSavedId}>
+                <div
+                    class="slds-notify slds-notify_alert slds-theme_success slds-m-bottom_small saved-banner"
+                    role="status"
+                >
+                    <span class="slds-assistive-text">success</span>
+                    <div class="saved-banner__row">
+                        <span>Saved. Summary updated from Salesforce.</span>
+                        <button
+                            type="button"
+                            class="saved-banner__link slds-button slds-button_reset"
+                            title="Open the saved loan request record"
+                            onclick={handleOpenSavedRecord}
+                        >
+                            Open loan request
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <div class="slds-form slds-form_stacked" aria-live="polite">
+                <div class="slds-form-element slds-m-bottom_small">
+                    <lightning-record-picker
+                        label="Customer Name"
+                        placeholder="Search customers by name"
+                        object-api-name="Customer__c"
+                        value={customerId}
+                        required
+                        disabled={isSaving}
+                        onchange={handleCustomerChange}
+                        display-info={customerDisplayInfo}
+                        matching-info={customerMatchingInfo}
+                    ></lightning-record-picker>
+                    <template lwc:if={customerError}>
+                        <div class="slds-form-element__help" role="alert">{customerError}</div>
+                    </template>
+                </div>
+
+                <div class="slds-form-element slds-m-bottom_small">
+                    <lightning-input
+                        type="number"
+                        label="Loan Amount (₪)"
+                        name="loanAmount"
+                        value={loanAmount}
+                        step="0.01"
+                        min="0.01"
+                        required
+                        disabled={isSaving}
+                        onchange={handleAmountChange}
+                        message-when-value-missing="Loan amount is required."
+                        message-when-range-underflow="Loan amount must be greater than zero."
+                    ></lightning-input>
+                    <div class="amount-presets slds-m-top_x-small" role="group" aria-label="Quick amounts">
+                        <template for:each={amountPresets} for:item="preset">
+                            <lightning-button
+                                key={preset.value}
+                                variant="neutral"
+                                label={preset.label}
+                                title={preset.title}
+                                data-amount={preset.value}
+                                disabled={isSaving}
+                                onclick={handleAmountPreset}
+                                class="slds-m-right_xx-small slds-m-bottom_xx-small"
+                            ></lightning-button>
+                        </template>
+                    </div>
+                    <template lwc:if={showHighValueHint}>
+                        <div class="high-value-hint slds-m-top_x-small" role="status">
+                            {highValueHint}
+                        </div>
+                    </template>
+                    <template lwc:if={amountError}>
+                        <div class="slds-form-element__help" role="alert">{amountError}</div>
+                    </template>
+                </div>
+
+                <div class="slds-form-element slds-m-bottom_small">
+                    <lightning-combobox
+                        label="Loan Status"
+                        name="loanStatus"
+                        value={loanStatus}
+                        options={statusOptions}
+                        required
+                        disabled={isSaving}
+                        onchange={handleStatusChange}
+                        field-level-help="New requests start as Draft or Submitted. Change to Approved or Rejected on the record page."
+                    ></lightning-combobox>
+                    <template lwc:if={statusError}>
+                        <div class="slds-form-element__help" role="alert">{statusError}</div>
+                    </template>
+                </div>
+
+                <div class="slds-m-top_medium form-actions">
+                    <lightning-button
+                        variant="brand"
+                        label="Save"
+                        title="Save loan request"
+                        disabled={isSaveDisabled}
+                        onclick={handleSave}
+                        class="slds-m-right_small"
+                    ></lightning-button>
+                    <lightning-button
+                        variant="neutral"
+                        label="Clear"
+                        title="Clear form fields"
+                        disabled={isSaving}
+                        onclick={handleClear}
+                    ></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

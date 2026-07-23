@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>High_Value_Open_Loans</fullName>
+    <columns>NAME</columns>
+    <columns>Customer__c</columns>
+    <columns>LoanAmount__c</columns>
+    <columns>LoanStatus__c</columns>
+    <columns>HighValueTaskCreated__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>HighValueTaskCreated__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>LoanStatus__c</field>
+        <operation>notEqual</operation>
+        <value>Approved,Rejected</value>
+    </filters>
+    <label>High-Value Open Loans</label>
+</ListView>

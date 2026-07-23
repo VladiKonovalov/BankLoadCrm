@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submission_Prerequisites</fullName>
+    <active>true</active>
+    <description>Leaving Draft requires an active customer with email. Manager fallback routing is enforced in Apex.</description>
+    <errorConditionFormula>AND(
+  TEXT(LoanStatus__c) &lt;&gt; &quot;Draft&quot;,
+  OR(
+    ISBLANK(Customer__c),
+    NOT(Customer__r.IsActive__c),
+    ISBLANK(Customer__r.Email__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Loans beyond Draft require an active customer with an email address.</errorMessage>
+</ValidationRule>

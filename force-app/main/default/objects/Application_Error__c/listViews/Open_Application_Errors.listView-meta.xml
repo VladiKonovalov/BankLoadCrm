@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Application_Errors</fullName>
+    <columns>NAME</columns>
+    <columns>SourceComponent__c</columns>
+    <columns>Operation__c</columns>
+    <columns>Category__c</columns>
+    <columns>ResolutionStatus__c</columns>
+    <columns>OccurredAt__c</columns>
+    <columns>LoanRequest__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ResolutionStatus__c</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </filters>
+    <label>Open Application Errors</label>
+</ListView>

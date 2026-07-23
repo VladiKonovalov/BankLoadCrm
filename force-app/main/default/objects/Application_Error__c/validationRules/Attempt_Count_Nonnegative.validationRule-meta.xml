@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attempt_Count_Nonnegative</fullName>
+    <active>true</active>
+    <description>Attempt count must be zero or greater.</description>
+    <errorConditionFormula>OR(
+  ISBLANK(AttemptCount__c),
+  AttemptCount__c &lt; 0
+)</errorConditionFormula>
+    <errorDisplayField>AttemptCount__c</errorDisplayField>
+    <errorMessage>Attempt count must be zero or greater.</errorMessage>
+</ValidationRule>

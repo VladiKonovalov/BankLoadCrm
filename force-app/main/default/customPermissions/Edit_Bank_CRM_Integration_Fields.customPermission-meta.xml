@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows editing protected LoanRequest integration fields such as ExternalRequestId and IntegrationStatus.</description>
+    <isLicensed>false</isLicensed>
+    <label>Edit Bank CRM Integration Fields</label>
+</CustomPermission>

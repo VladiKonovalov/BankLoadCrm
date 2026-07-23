@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Number_Format</fullName>
+    <active>true</active>
+    <description>Reject blank or malformed customer numbers. Pattern: 3–30 alphanumeric characters, hyphen allowed.</description>
+    <errorConditionFormula>OR(
+  ISBLANK(CustomerNumber__c),
+  NOT(REGEX(CustomerNumber__c, &quot;^[A-Za-z0-9\\-]{3,30}$&quot;))
+)</errorConditionFormula>
+    <errorDisplayField>CustomerNumber__c</errorDisplayField>
+    <errorMessage>Enter a valid customer number (3–30 letters, numbers, or hyphens).</errorMessage>
+</ValidationRule>

@@ -1,0 +1,29 @@
+# Salesforce local auth and caches
+.sfdx/
+.sf/
+.localdevserver/
+
+# Node / Jest
+node_modules/
+coverage/
+*.lcov
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs and env
+*.log
+.env
+.env.*
+!.env.example
+
+# Generated / local
+dist/
+tmp/
+temp/
+*.pem
+*.key

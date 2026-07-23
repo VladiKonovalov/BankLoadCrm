@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resolution_State_Consistency</fullName>
+    <active>true</active>
+    <description>Resolved requires ResolvedAt; non-resolved must not have ResolvedAt.</description>
+    <errorConditionFormula>OR(
+  AND(
+    TEXT(ResolutionStatus__c) = &quot;Resolved&quot;,
+    ISBLANK(ResolvedAt__c)
+  ),
+  AND(
+    TEXT(ResolutionStatus__c) &lt;&gt; &quot;Resolved&quot;,
+    NOT(ISBLANK(ResolvedAt__c))
+  )
+)</errorConditionFormula>
+    <errorMessage>Resolved errors require Resolved At; unresolved errors must not have Resolved At.</errorMessage>
+</ValidationRule>

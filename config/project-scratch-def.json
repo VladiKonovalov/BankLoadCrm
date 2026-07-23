@@ -1,0 +1,16 @@
+{
+  "orgName": "Bank CRM Dev",
+  "edition": "Developer",
+  "description": "Scratch org for Bank CRM take-home development and demos.",
+  "language": "en_US",
+  "country": "IL",
+  "features": ["EnableSetPasswordInApi"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}

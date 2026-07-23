@@ -1,0 +1,49 @@
+.form-root {
+    min-height: 12rem;
+}
+
+.slds-form-element__help {
+    color: var(--slds-g-color-error-base-40, #ba0517);
+    margin-top: 0.25rem;
+}
+
+.high-value-hint {
+    color: var(--slds-g-color-warning-base-50, #8c4b02);
+    background: var(--slds-g-color-warning-container-1, #fef3e0);
+    border-inline-start: 0.25rem solid var(--slds-g-color-warning-base-40, #fe9339);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.amount-presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.saved-banner__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.saved-banner__link {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.saved-banner__link:hover,
+.saved-banner__link:focus {
+    text-decoration: none;
+}

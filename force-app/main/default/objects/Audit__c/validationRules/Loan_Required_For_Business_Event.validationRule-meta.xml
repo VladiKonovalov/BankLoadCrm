@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Required_For_Business_Event</fullName>
+    <active>true</active>
+    <description>All currently supported event types require a loan request.</description>
+    <errorConditionFormula>AND(
+  OR(
+    TEXT(EventType__c) = &quot;STATUS_CHANGED&quot;,
+    TEXT(EventType__c) = &quot;HIGH_VALUE_STATUS_REVIEW&quot;,
+    TEXT(EventType__c) = &quot;APPROVAL_EMAIL_SENT&quot;,
+    TEXT(EventType__c) = &quot;INTEGRATION_RESULT&quot;
+  ),
+  ISBLANK(LoanRequest__c)
+)</errorConditionFormula>
+    <errorDisplayField>LoanRequest__c</errorDisplayField>
+    <errorMessage>A loan request is required for this audit event type.</errorMessage>
+</ValidationRule>

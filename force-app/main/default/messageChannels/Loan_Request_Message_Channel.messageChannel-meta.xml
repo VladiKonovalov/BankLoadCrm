@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Loan Request Message Channel</masterLabel>
+    <isExposed>true</isExposed>
+    <description
+    >Id-only handoff from loanRequestForm to loanRequestSummary after a successful Apex save. Payload is loanRequestId, correlationId, and optional action only — never customer name, amount, or status.</description>
+    <lightningMessageFields>
+        <fieldName>loanRequestId</fieldName>
+        <description>Newly created LoanRequest__c Id.</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>correlationId</fieldName>
+        <description>Trace Id returned from the save response.</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>action</fieldName>
+        <description>Optional action hint (for example created).</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

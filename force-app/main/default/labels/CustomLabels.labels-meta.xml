@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Bank_CRM_Access_Denied</fullName>
+        <categories>BankCRM,LWC,Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic access denied message</shortDescription>
+        <value>You do not have permission to perform this action.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Callback_Token</fullName>
+        <categories>BankCRM,Integration,Security</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shared callback auth token placeholder</shortDescription>
+        <value>REPLACE_IN_ORG</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Approval_Email_Body</fullName>
+        <categories>BankCRM,Email</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval email body template</shortDescription>
+        <value>Dear {0},
+
+Your loan request {1} for the amount of {2} has been approved.
+
+Thank you,
+Bank CRM</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Approval_Email_Subject</fullName>
+        <categories>BankCRM,Email</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval email subject</shortDescription>
+        <value>Your loan request {0} has been approved</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Generic_Save_Error</fullName>
+        <categories>BankCRM,LWC,Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic save failure message</shortDescription>
+        <value>Unable to save the loan request. Review the entered values and try again.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_High_Value_Task_Description</fullName>
+        <categories>BankCRM,Task</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>High-value Task description</shortDescription>
+        <value>Loan request {0} for customer {1} exceeds the high-value threshold ({2}). Review the request and complete required manager follow-up.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_High_Value_Task_Subject</fullName>
+        <categories>BankCRM,Task</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>High-value Task subject</shortDescription>
+        <value>High-value loan review: {0}</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Notification_Body</fullName>
+        <categories>BankCRM,Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>High-value custom notification body</shortDescription>
+        <value>High-value loan {0} changed status to {1}. Amount: {2}.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Notification_Title</fullName>
+        <categories>BankCRM,Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>High-value custom notification title</shortDescription>
+        <value>High-value loan status review</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Save_Success</fullName>
+        <categories>BankCRM,LWC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loan save success message</shortDescription>
+        <value>Loan request saved — summary updated from Salesforce.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Summary_Empty</fullName>
+        <categories>BankCRM,LWC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Summary empty state</shortDescription>
+        <value>Save a loan on the left — this panel updates automatically from Salesforce.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Summary_Load_Error</fullName>
+        <categories>BankCRM,LWC,Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Summary load failure message</shortDescription>
+        <value>Unable to load the loan request summary. Try again.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_High_Value_Hint</fullName>
+        <categories>BankCRM,LWC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Form hint when amount exceeds high-value threshold</shortDescription>
+        <value>Amounts over ₪250,000 notify the manager and create Task/audit records.</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Summary_Loaded</fullName>
+        <categories>BankCRM,LWC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Badge confirming summary was reloaded from Salesforce</shortDescription>
+        <value>Loaded from Salesforce</value>
+    </labels>
+    <labels>
+        <fullName>Bank_CRM_Summary_Next_Steps</fullName>
+        <categories>BankCRM,LWC</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Guidance after save for status-driven automations</shortDescription>
+        <value>Open the record to change status to Approved or Rejected and verify customer status, email, and audit events.</value>
+    </labels>
+</CustomLabels>

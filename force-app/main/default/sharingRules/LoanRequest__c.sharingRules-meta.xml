@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Share_Loans_Under_Review_With_Approvers</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share Loans Under Review With Approvers</label>
+        <sharedTo>
+            <group>Bank_CRM_Approvers</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Under Review</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_High_Value_Loans_With_Managers</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share High Value Loans With Managers</label>
+        <sharedTo>
+            <group>Bank_CRM_Managers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>HighValueTaskCreated__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Loans_With_Compliance</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share Loans With Compliance</label>
+        <sharedTo>
+            <group>Bank_CRM_Compliance</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Draft</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Under Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>LoanStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

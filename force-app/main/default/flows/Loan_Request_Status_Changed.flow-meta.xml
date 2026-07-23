@@ -11,7 +11,7 @@
             <targetReference>CRT_High_Value_Status_Audit</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>ASG_Fault_Notify</targetReference>
+            <targetReference>ASG_Fault_Ctx_Notify</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -47,6 +47,30 @@
         <nameSegment>customNotificationAction</nameSegment>
         <offset>0</offset>
     </actionCalls>
+    <actionCalls>
+        <name>ACT_Resolve_Notification_Recipient</name>
+        <label>Resolve Notification Recipient</label>
+        <locationX>578</locationX>
+        <locationY>866</locationY>
+        <actionName>ManagerNotificationRecipientInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>DEC_Recipient_Resolved</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>ASG_Fault_Ctx_Recipient</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customerId</name>
+            <value>
+                <elementReference>$Record.Customer__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>ManagerNotificationRecipientInvocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>65.0</apiVersion>
     <assignments>
         <name>ASG_Add_Recipient</name>
@@ -57,48 +81,11 @@
             <assignToReference>colRecipientIds</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>varManagerRecipientId</elementReference>
+                <elementReference>ACT_Resolve_Notification_Recipient.recipientUserId</elementReference>
             </value>
         </assignmentItems>
         <connector>
             <targetReference>ACT_Notify_Manager</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>ASG_Apply_Settings</name>
-        <label>Apply Settings</label>
-        <locationX>314</locationX>
-        <locationY>350</locationY>
-        <assignmentItems>
-            <assignToReference>varHighValueThreshold</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varOutHighValueThreshold</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varManagerNotificationType</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varOutManagerNotificationType</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varDefaultManagerUsername</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varOutDefaultManagerUsername</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varDefaultQueueDeveloperName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varOutDefaultQueueDeveloperName</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>GET_Customer</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -118,7 +105,7 @@
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Audit</name>
+        <name>ASG_Fault_Ctx_Audit</name>
         <label>Fault Context Audit</label>
         <locationX>1370</locationX>
         <locationY>1406</locationY>
@@ -136,26 +123,12 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Flow Fault</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Mandatory</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Customer_Active</name>
+        <name>ASG_Fault_Ctx_Customer_Active</name>
         <label>Fault Context Customer Active</label>
         <locationX>50</locationX>
         <locationY>782</locationY>
@@ -173,26 +146,12 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Flow Fault</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Mandatory</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Customer_Review</name>
+        <name>ASG_Fault_Ctx_Customer_Review</name>
         <label>Fault Context Customer Review</label>
         <locationX>314</locationX>
         <locationY>782</locationY>
@@ -210,26 +169,12 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Flow Fault</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Mandatory</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Notify</name>
+        <name>ASG_Fault_Ctx_Notify</name>
         <label>Fault Context Notify</label>
         <locationX>1106</locationX>
         <locationY>1298</locationY>
@@ -247,26 +192,12 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Notification</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Notification</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Notify_Type</name>
+        <name>ASG_Fault_Ctx_Notify_Type</name>
         <label>Fault Context Notification Type</label>
         <locationX>1106</locationX>
         <locationY>1082</locationY>
@@ -284,26 +215,12 @@
                 <stringValue>Custom notification type not found for configured developer name.</stringValue>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Notification</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Notification</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Recipient</name>
+        <name>ASG_Fault_Ctx_Recipient</name>
         <label>Fault Context Recipient Unresolved</label>
         <locationX>1370</locationX>
         <locationY>974</locationY>
@@ -311,36 +228,22 @@
             <assignToReference>varFaultElementName</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Resolve_Manager_Recipient</stringValue>
+                <stringValue>ACT_Resolve_Notification_Recipient</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varFaultMessage</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Manager recipient unresolved; skipping custom notification and continuing to high-value audit.</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFaultCategory</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>Notification</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varFailParent</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
+                <elementReference>frmRecipientUnresolvedMessage</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SUB_Fault_Handler</targetReference>
+            <targetReference>ASG_Fault_Notification</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Fault_Settings</name>
+        <name>ASG_Fault_Ctx_Settings</name>
         <label>Fault Context Settings Missing</label>
         <locationX>578</locationX>
         <locationY>242</locationY>
@@ -358,6 +261,15 @@
                 <stringValue>Bank_CRM_Settings.Default was not found. Failing closed per production policy.</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>ASG_Fault_Mandatory</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>ASG_Fault_Mandatory</name>
+        <label>Apply Mandatory Fault Policy</label>
+        <locationX>1106</locationX>
+        <locationY>1350</locationY>
         <assignmentItems>
             <assignToReference>varFaultCategory</assignToReference>
             <operator>Assign</operator>
@@ -377,97 +289,26 @@
         </connector>
     </assignments>
     <assignments>
-        <name>ASG_Init_Context</name>
-        <label>Init Context</label>
-        <locationX>314</locationX>
-        <locationY>134</locationY>
+        <name>ASG_Fault_Notification</name>
+        <label>Apply Notification Fault Policy</label>
+        <locationX>1238</locationX>
+        <locationY>1350</locationY>
         <assignmentItems>
-            <assignToReference>varLoanRequestId</assignToReference>
+            <assignToReference>varFaultCategory</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Id</elementReference>
+                <stringValue>Notification</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varCustomerId</assignToReference>
+            <assignToReference>varFailParent</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Customer__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varCorrelationId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>frmCorrelationId</elementReference>
+                <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>SUB_Resolve_Settings</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>ASG_Mark_High_Value</name>
-        <label>Mark High Value</label>
-        <locationX>578</locationX>
-        <locationY>866</locationY>
-        <assignmentItems>
-            <assignToReference>varIsHighValue</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>DEC_RM_Present</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>ASG_Set_Recipient_Queue</name>
-        <label>Set Recipient Queue</label>
-        <locationX>842</locationX>
-        <locationY>1082</locationY>
-        <assignmentItems>
-            <assignToReference>varManagerRecipientId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GET_Default_Queue.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>GET_Notification_Type</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>ASG_Set_Recipient_RM</name>
-        <label>Set Recipient Relationship Manager</label>
-        <locationX>314</locationX>
-        <locationY>1082</locationY>
-        <assignmentItems>
-            <assignToReference>varManagerRecipientId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GET_RM_User.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>GET_Notification_Type</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>ASG_Set_Recipient_Username</name>
-        <label>Set Recipient Default Manager</label>
-        <locationX>578</locationX>
-        <locationY>1082</locationY>
-        <assignmentItems>
-            <assignToReference>varManagerRecipientId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>GET_Default_Manager.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>GET_Notification_Type</targetReference>
+            <targetReference>SUB_Fault_Handler</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -496,31 +337,6 @@
         </rules>
     </decisions>
     <decisions>
-        <name>DEC_Default_Manager_Found</name>
-        <label>Default Manager Found?</label>
-        <locationX>710</locationX>
-        <locationY>974</locationY>
-        <defaultConnector>
-            <targetReference>DEC_Queue_Configured</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
-        <rules>
-            <name>Default_Manager_Found</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>GET_Default_Manager</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>ASG_Set_Recipient_Username</targetReference>
-            </connector>
-            <label>Found</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>DEC_High_Value_Amount</name>
         <label>Amount Above Threshold?</label>
         <locationX>314</locationX>
@@ -537,7 +353,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>ASG_Mark_High_Value</targetReference>
+                <targetReference>ACT_Resolve_Notification_Recipient</targetReference>
             </connector>
             <label>Above Threshold</label>
         </rules>
@@ -588,7 +404,7 @@
         <locationX>842</locationX>
         <locationY>1082</locationY>
         <defaultConnector>
-            <targetReference>ASG_Fault_Notify_Type</targetReference>
+            <targetReference>ASG_Fault_Ctx_Notify_Type</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Missing</defaultConnectorLabel>
         <rules>
@@ -608,103 +424,28 @@
         </rules>
     </decisions>
     <decisions>
-        <name>DEC_Queue_Configured</name>
-        <label>Default Queue Configured?</label>
-        <locationX>974</locationX>
-        <locationY>974</locationY>
-        <defaultConnector>
-            <targetReference>ASG_Fault_Recipient</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Configured</defaultConnectorLabel>
-        <rules>
-            <name>Queue_Configured</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varDefaultQueueDeveloperName</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GET_Default_Queue</targetReference>
-            </connector>
-            <label>Configured</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>DEC_Queue_Found</name>
-        <label>Default Queue Found?</label>
-        <locationX>974</locationX>
-        <locationY>1082</locationY>
-        <defaultConnector>
-            <targetReference>ASG_Fault_Recipient</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
-        <rules>
-            <name>Queue_Found</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>GET_Default_Queue</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>ASG_Set_Recipient_Queue</targetReference>
-            </connector>
-            <label>Found</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>DEC_RM_Active</name>
-        <label>Relationship Manager Active?</label>
-        <locationX>314</locationX>
-        <locationY>974</locationY>
-        <defaultConnector>
-            <targetReference>DEC_Username_Configured</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Inactive Or Missing</defaultConnectorLabel>
-        <rules>
-            <name>RM_Active</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>GET_RM_User</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>ASG_Set_Recipient_RM</targetReference>
-            </connector>
-            <label>Active</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>DEC_RM_Present</name>
-        <label>Relationship Manager Present?</label>
+        <name>DEC_Recipient_Resolved</name>
+        <label>Notification Recipient Resolved?</label>
         <locationX>578</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <defaultConnector>
-            <targetReference>DEC_Username_Configured</targetReference>
+            <targetReference>ASG_Fault_Ctx_Recipient</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Blank</defaultConnectorLabel>
+        <defaultConnectorLabel>Unresolved</defaultConnectorLabel>
         <rules>
-            <name>RM_Present</name>
+            <name>Recipient_Resolved</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>GET_Customer.RelationshipManager__c</leftValueReference>
-                <operator>IsNull</operator>
+                <leftValueReference>ACT_Resolve_Notification_Recipient.isResolved</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>false</booleanValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>GET_RM_User</targetReference>
+                <targetReference>GET_Notification_Type</targetReference>
             </connector>
-            <label>Present</label>
+            <label>Resolved</label>
         </rules>
     </decisions>
     <decisions>
@@ -713,56 +454,40 @@
         <locationX>314</locationX>
         <locationY>242</locationY>
         <defaultConnector>
-            <targetReference>ASG_Fault_Settings</targetReference>
+            <targetReference>ASG_Fault_Ctx_Settings</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Missing</defaultConnectorLabel>
         <rules>
             <name>Settings_OK</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>varOutSettingsMissing</leftValueReference>
+                <leftValueReference>varSettingsMissing</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>ASG_Apply_Settings</targetReference>
+                <targetReference>GET_Customer</targetReference>
             </connector>
             <label>Present</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>DEC_Username_Configured</name>
-        <label>Default Manager Username Configured?</label>
-        <locationX>710</locationX>
-        <locationY>866</locationY>
-        <defaultConnector>
-            <targetReference>DEC_Queue_Configured</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Blank</defaultConnectorLabel>
-        <rules>
-            <name>Username_Configured</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varDefaultManagerUsername</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GET_Default_Manager</targetReference>
-            </connector>
-            <label>Configured</label>
-        </rules>
-    </decisions>
-    <description>F1 Part C: After-save on LoanRequest__c status change. Updates customer status on Approve/Reject; on high-value status changes sends manager custom notification and creates HIGH_VALUE_STATUS_REVIEW audit. Does not create Tasks or STATUS_CHANGED audits (Apex-owned). Deployed inactive until Flow tests pass.</description>
+    <description>F1 Part C: After-save on LoanRequest__c status change. Updates customer status on Approve/Reject; on high-value status changes resolves a User recipient via ManagerNotificationRecipientInvocable, sends manager custom notification, and creates HIGH_VALUE_STATUS_REVIEW audit. Does not create Tasks or STATUS_CHANGED audits (Apex-owned). Deployed inactive until Flow tests pass.</description>
     <environments>Default</environments>
     <formulas>
         <name>frmCorrelationId</name>
         <dataType>String</dataType>
         <expression>LEFT({!$Record.Id} &amp; &quot;-&quot; &amp; SUBSTITUTE(SUBSTITUTE(TEXT({!$Flow.CurrentDateTime}), &quot; &quot;, &quot;&quot;), &quot;:&quot;, &quot;&quot;), 64)</expression>
+    </formulas>
+    <formulas>
+        <name>frmRecipientUnresolvedMessage</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!ACT_Resolve_Notification_Recipient.failureReason}),
+  &quot;Manager recipient unresolved; skipping custom notification and continuing to high-value audit.&quot;,
+  {!ACT_Resolve_Notification_Recipient.failureReason}
+)</expression>
     </formulas>
     <interviewLabel>Loan Request Status Changed {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Loan Request Status Changed</label>
@@ -787,7 +512,7 @@
         <inputAssignments>
             <field>CorrelationId__c</field>
             <value>
-                <elementReference>varCorrelationId</elementReference>
+                <elementReference>frmCorrelationId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -805,7 +530,7 @@
         <locationX>842</locationX>
         <locationY>1406</locationY>
         <faultConnector>
-            <targetReference>ASG_Fault_Audit</targetReference>
+            <targetReference>ASG_Fault_Ctx_Audit</targetReference>
         </faultConnector>
         <inputAssignments>
             <field>ActorUser__c</field>
@@ -816,13 +541,13 @@
         <inputAssignments>
             <field>CorrelationId__c</field>
             <value>
-                <elementReference>varCorrelationId</elementReference>
+                <elementReference>frmCorrelationId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>Customer__c</field>
             <value>
-                <elementReference>varCustomerId</elementReference>
+                <elementReference>$Record.Customer__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -896,7 +621,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varCustomerId</elementReference>
+                <elementReference>$Record.Customer__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -906,68 +631,6 @@
         <queriedFields>RelationshipManager__c</queriedFields>
         <queriedFields>Status__c</queriedFields>
         <queriedFields>IsActive__c</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>GET_Default_Manager</name>
-        <label>Get Default Manager User</label>
-        <locationX>710</locationX>
-        <locationY>866</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>DEC_Default_Manager_Found</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Username</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varDefaultManagerUsername</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>Username</queriedFields>
-        <queriedFields>IsActive</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>GET_Default_Queue</name>
-        <label>Get Default Manager Queue</label>
-        <locationX>974</locationX>
-        <locationY>974</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>DEC_Queue_Found</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varDefaultQueueDeveloperName</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Type</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Queue</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Group</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>DeveloperName</queriedFields>
-        <queriedFields>Type</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -993,36 +656,6 @@
         <queriedFields>DeveloperName</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>GET_RM_User</name>
-        <label>Get Active Relationship Manager</label>
-        <locationX>314</locationX>
-        <locationY>866</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>DEC_RM_Active</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>GET_Customer.RelationshipManager__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>IsActive</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordUpdates>
         <name>UPD_Customer_Active</name>
         <label>Update Customer Active</label>
@@ -1032,14 +665,14 @@
             <targetReference>DEC_High_Value_Amount</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>ASG_Fault_Customer_Active</targetReference>
+            <targetReference>ASG_Fault_Ctx_Customer_Active</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varCustomerId</elementReference>
+                <elementReference>$Record.Customer__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -1059,14 +692,14 @@
             <targetReference>DEC_High_Value_Amount</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>ASG_Fault_Customer_Review</targetReference>
+            <targetReference>ASG_Fault_Ctx_Customer_Review</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varCustomerId</elementReference>
+                <elementReference>$Record.Customer__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -1081,7 +714,7 @@
         <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>ASG_Init_Context</targetReference>
+            <targetReference>SUB_Resolve_Settings</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1115,19 +748,19 @@
         <inputAssignments>
             <name>inLoanRequestId</name>
             <value>
-                <elementReference>varLoanRequestId</elementReference>
+                <elementReference>$Record.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>inCustomerId</name>
             <value>
-                <elementReference>varCustomerId</elementReference>
+                <elementReference>$Record.Customer__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>inCorrelationId</name>
             <value>
-                <elementReference>varCorrelationId</elementReference>
+                <elementReference>frmCorrelationId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1183,23 +816,15 @@
         </connector>
         <flowName>Resolve_Bank_CRM_Settings</flowName>
         <outputAssignments>
-            <assignToReference>varOutHighValueThreshold</assignToReference>
+            <assignToReference>varHighValueThreshold</assignToReference>
             <name>outHighValueThreshold</name>
         </outputAssignments>
         <outputAssignments>
-            <assignToReference>varOutManagerNotificationType</assignToReference>
+            <assignToReference>varManagerNotificationType</assignToReference>
             <name>outManagerNotificationType</name>
         </outputAssignments>
         <outputAssignments>
-            <assignToReference>varOutDefaultManagerUsername</assignToReference>
-            <name>outDefaultManagerUsername</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varOutDefaultQueueDeveloperName</assignToReference>
-            <name>outDefaultQueueDeveloperName</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>varOutSettingsMissing</assignToReference>
+            <assignToReference>varSettingsMissing</assignToReference>
             <name>outSettingsMissing</name>
         </outputAssignments>
     </subflows>
@@ -1221,35 +846,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>varCorrelationId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varCustomerId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>varCustomerNameSnapshot</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varDefaultManagerUsername</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varDefaultQueueDeveloperName</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -1301,23 +898,6 @@
         </value>
     </variables>
     <variables>
-        <name>varIsHighValue</name>
-        <dataType>Boolean</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <booleanValue>false</booleanValue>
-        </value>
-    </variables>
-    <variables>
-        <name>varLoanRequestId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>varManagerNotificationType</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -1325,43 +905,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>varManagerRecipientId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varOutDefaultManagerUsername</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varOutDefaultQueueDeveloperName</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varOutHighValueThreshold</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>2</scale>
-    </variables>
-    <variables>
-        <name>varOutManagerNotificationType</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varOutSettingsMissing</name>
+        <name>varSettingsMissing</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

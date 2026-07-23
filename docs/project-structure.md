@@ -47,6 +47,7 @@ bankHW/
 │   ├── project-structure.md
 │   ├── flow/
 │   │   ├── loan-request-status-flow.md
+│   │   ├── loan-request-status-flow-simplification.md
 │   │   └── loan-request-status-flow.png
 │   └── submission/
 │       └── README.md

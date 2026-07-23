@@ -78,21 +78,21 @@
         <fields>LoanAmount__c</fields>
         <fields>LoanStatus__c</fields>
         <fields>SubmissionDate__c</fields>
-        <relatedList>Loan_Requests__r</relatedList>
+        <relatedList>LoanRequest__c.Customer__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>EventType__c</fields>
         <fields>OccurredAt__c</fields>
         <fields>Source__c</fields>
-        <relatedList>Audit_Events__r</relatedList>
+        <relatedList>Audit__c.Customer__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Category__c</fields>
         <fields>ResolutionStatus__c</fields>
         <fields>OccurredAt__c</fields>
-        <relatedList>Application_Errors__r</relatedList>
+        <relatedList>Application_Error__c.Customer__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

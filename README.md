@@ -130,6 +130,26 @@ F1 runs **after save** when `LoanStatus__c` changes:
 - **Rejected** → `Customer__c.Status__c = Requires Additional Review`
 - **Amount > threshold** → manager custom notification + `HIGH_VALUE_STATUS_REVIEW` audit
 
+### Flow screenshots (Part C)
+
+#### Loan Request Status Changed
+
+Primary record-triggered Flow (`Loan_Request_Status_Changed`). Runs when `LoanStatus__c` changes: updates customer status, and for high-value loans notifies the manager and creates a `HIGH_VALUE_STATUS_REVIEW` audit.
+
+<img width="1320" height="808" alt="Loan Request Status Changed Flow" src="https://github.com/user-attachments/assets/64d0561a-83c6-4b86-834f-7e8a29d5d57b" />
+
+#### Resolve Bank CRM Settings
+
+Autolaunched subflow (`Resolve_Bank_CRM_Settings`) invoked by the main Flow to load threshold, notification type, and manager routing from `Bank_CRM_Settings__mdt`.
+
+<img width="706" height="664" alt="Resolve Bank CRM Settings Flow" src="https://github.com/user-attachments/assets/81f4c4ab-03b8-468f-aeac-cbc897a3d118" />
+
+#### Loan Request Flow Fault Handler
+
+Autolaunched subflow (`Loan_Request_Flow_Fault_Handler`) for exception handling: creates `Application_Error__c` when a mandatory Flow step fails.
+
+<img width="464" height="461" alt="Loan Request Flow Fault Handler" src="https://github.com/user-attachments/assets/e9bd61d6-1c6d-4eda-b337-9eddf04b94bb" />
+
 ### Automation ownership (no duplicate side effects)
 
 | Concern | Owner | Implementation |
@@ -238,18 +258,4 @@ Coverage goal: **≥ 90%** aggregate on assignment Apex (stretch 92%+). Do not u
 | `scripts/` | Optional Apex/SOQL smoke scripts |
 
 See [`docs/project-structure.md`](docs/project-structure.md) for the full catalog and [`docs/implementation-plan.md`](docs/implementation-plan.md) for the build roadmap.
-
-
-Loan Request Status Changed
-
-<img width="1320" height="808" alt="image" src="https://github.com/user-attachments/assets/64d0561a-83c6-4b86-834f-7e8a29d5d57b" />
-
-
-Resolve_Bank_CRM_Settings
-
-<img width="706" height="664" alt="image" src="https://github.com/user-attachments/assets/81f4c4ab-03b8-468f-aeac-cbc897a3d118" />
-
-Loan Request Flow Fault Handler
-<img width="464" height="461" alt="image" src="https://github.com/user-attachments/assets/e9bd61d6-1c6d-4eda-b337-9eddf04b94bb" />
-
 

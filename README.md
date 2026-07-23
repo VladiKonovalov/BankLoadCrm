@@ -238,3 +238,18 @@ Coverage goal: **≥ 90%** aggregate on assignment Apex (stretch 92%+). Do not u
 | `scripts/` | Optional Apex/SOQL smoke scripts |
 
 See [`docs/project-structure.md`](docs/project-structure.md) for the full catalog and [`docs/implementation-plan.md`](docs/implementation-plan.md) for the build roadmap.
+
+
+Loan Request Status Changed
+
+<img width="1320" height="808" alt="image" src="https://github.com/user-attachments/assets/64d0561a-83c6-4b86-834f-7e8a29d5d57b" />
+
+
+Resolve_Bank_CRM_Settings
+
+<img width="706" height="664" alt="image" src="https://github.com/user-attachments/assets/81f4c4ab-03b8-468f-aeac-cbc897a3d118" />
+
+Loan Request Flow Fault Handler
+<img width="464" height="461" alt="image" src="https://github.com/user-attachments/assets/e9bd61d6-1c6d-4eda-b337-9eddf04b94bb" />
+
+
